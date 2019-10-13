@@ -1,0 +1,62 @@
+﻿<Window x:Class="GB_CSharp_Level2_Lesson_5.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GB_CSharp_Level2_Lesson_5"
+        mc:Ignorable="d"
+        Title="Компания" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="btn_dep" 
+                Content="Изменить отдел"
+                HorizontalAlignment="Stretch" 
+                FontSize="14"     
+                VerticalAlignment="Stretch"  
+                Margin="20,10,105,54"
+                Grid.Row="2"/>
+
+        <ListView x:Name="listDepartment"
+                  HorizontalAlignment="Stretch"
+                  Margin="5,5,5,5"
+                  VerticalAlignment="Stretch" 
+                  Grid.Column="0"
+                  Grid.Row="1" PreviewMouseDoubleClick="ListDepartment_PreviewMouseDoubleClick"
+                  />
+        
+        <TextBlock Text="Отдел" 
+                   FontSize="16"
+                   Margin="5,5,5,5" 
+                   Grid.Column="0" 
+                   Grid.Row="0"
+                   HorizontalAlignment="Center"                   
+                   VerticalAlignment="Center"                     
+                   />
+
+        <TextBlock Text="Сотрудники отдела" 
+                   FontSize="16"
+                   Margin="5,5,5,5" 
+                   Grid.Column="1" 
+                   Grid.Row="0"
+                   HorizontalAlignment="Center"                   
+                   VerticalAlignment="Center"  
+                   />
+        
+        <ListView x:Name="listEmployee"
+                  HorizontalAlignment="Stretch"
+                  Margin="5,5,5,5"
+                  VerticalAlignment="Stretch" 
+                  Grid.Column="1"
+                  Grid.Row="1" PreviewMouseDoubleClick="ListEmployee_PreviewMouseDoubleClick"
+                  />
+    </Grid>
+</Window>
