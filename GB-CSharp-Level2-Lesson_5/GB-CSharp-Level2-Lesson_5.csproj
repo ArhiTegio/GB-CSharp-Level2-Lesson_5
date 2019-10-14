@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Symbol.cs" />
     <Compile Include="WindowDepartment.xaml.cs">
       <DependentUpon>WindowDepartment.xaml</DependentUpon>
     </Compile>

@@ -13,7 +13,7 @@
         <TextBox x:Name="tb_Name"  HorizontalAlignment="Left" VerticalContentAlignment="Center" FontSize="14" Height="28" Margin="138,43,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="244"/>
         <Label Content="Лет" FontSize="14" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top" Height="28" Width="123"/>
         <TextBox x:Name="tb_Age" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontSize="14" Height="28" Margin="138,76,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="244"/>
-        <TextBox x:Name="tb_Salery" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontSize="14" Height="28" Margin="138,109,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="244"/>
+        <TextBox x:Name="tb_Salary" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontSize="14" Height="28" Margin="138,109,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="244"/>
         <Label Content="Оклад, р" FontSize="14" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" Height="28" Width="123"/>
 
     </Grid>

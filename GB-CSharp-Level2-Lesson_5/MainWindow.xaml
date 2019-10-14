@@ -30,7 +30,7 @@
                   Margin="5,5,5,5"
                   VerticalAlignment="Stretch" 
                   Grid.Column="0"
-                  Grid.Row="1" PreviewMouseDoubleClick="ListDepartment_PreviewMouseDoubleClick"
+                  Grid.Row="1" PreviewMouseDoubleClick="ListDepartment_PreviewMouseDoubleClick" SelectionChanged="ListDepartment_SelectionChanged"
                   />
         
         <TextBlock Text="Отдел" 

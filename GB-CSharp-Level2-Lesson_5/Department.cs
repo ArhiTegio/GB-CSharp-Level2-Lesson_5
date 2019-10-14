@@ -14,16 +14,16 @@ namespace GB_CSharp_Level2_Lesson_5
         ObservableCollection<Job> planingJob = new ObservableCollection<Job>();
         Dictionary<Job, Employee> jobInWork = new Dictionary<Job, Employee>();
         Dictionary<Job, Employee> jobIsDone = new Dictionary<Job, Employee>();
-        double profit = 0;
+        long profit = 0;
 
-        public Department(string name, double profit)
+        public Department(string name, long profit)
         {
             Name = name;
             Profit = profit;
         }
 
         public string Name { get => name; set => name = value; }
-        public double Profit { get => profit; set => profit = value; }
+        public long Profit { get => profit; set => profit = value; }
         internal ObservableCollection<Employee> Employees { get => employees; set => employees = value; }
         internal ObservableCollection<Job> PlaningJob { get => planingJob; set => planingJob = value; }
         internal Dictionary<Job, Employee> JobInWork { get => jobInWork; set => jobInWork = value; }

@@ -50,15 +50,22 @@ namespace GB_CSharp_Level2_Lesson_5
             listDepartment.SelectionChanged += delegate { SelectDepartment(); };
             listEmployee.SelectionChanged += delegate { SelectEmployee(); };
             btn_dep.Click += delegate { OpenWindowDepartment(); };
+
+
         }
 
         public void SelectDepartment() => listEmployee.ItemsSource = employees1 = company.Departments.Where(x => x == listDepartment.SelectedItem).FirstOrDefault().Employees;
-   
-        public void SelectEmployee() => (new WindowEmployee(
-            company.Departments.Where(x => x == listDepartment.SelectedItem).FirstOrDefault().Employees.Where(x => x == listEmployee.SelectedItem).FirstOrDefault(), 
-            company.Departments.Where(x => x == listDepartment.SelectedItem).FirstOrDefault(), company)).Show();
 
-        public void OpenWindowDepartment() => (new WindowDepartment()).Show();
+        public void SelectEmployee()
+        {
+            var e = company.Departments.Where(x => x == listDepartment.SelectedItem).FirstOrDefault().Employees.Where(x => x == listEmployee.SelectedItem).FirstOrDefault();
+            if(e != null)
+                (new WindowEmployee(
+                    company.Departments.Where(x => x == listDepartment.SelectedItem).FirstOrDefault().Employees.Where(x => x == listEmployee.SelectedItem).FirstOrDefault(),
+                    company.Departments.Where(x => x == listDepartment.SelectedItem).FirstOrDefault(), company, listEmployee)).Show();
+        }
+
+        public void OpenWindowDepartment() => (new WindowDepartment(company.Departments.Where(x => x == listDepartment.SelectedItem).FirstOrDefault(), company, listDepartment)).Show();
 
         private void ListDepartment_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -66,6 +73,11 @@ namespace GB_CSharp_Level2_Lesson_5
         }
 
         private void ListEmployee_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void ListDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

@@ -21,46 +21,78 @@ namespace GB_CSharp_Level2_Lesson_5
     {
         BaseEmployee employee;
         Department department;
+        string department_Name;
         Company company;
+        ListView listView;
 
-        public WindowEmployee(BaseEmployee employee, Department department, Company company)
+        public WindowEmployee(BaseEmployee employee, Department department, Company company, ListView listView)
         {
             InitializeComponent();
             this.employee = employee;
             this.department = department;
             this.company = company;
-
+            this.listView = listView;
             dep.ItemsSource = company.Departments.Select(x => x.Name);
             dep.Text = department.Name;
+            dep.SelectionChanged += delegate { Dep_SelectChanged(); };
+            department_Name = department.Name;
             tb_Name.Text = employee.Name;
             tb_Age.Text = employee.Age.ToString();
-            tb_Salery.Text = employee.Salary.ToString();
-            tb_Name.KeyUp += new KeyEventHandler(MainWindow_KeyDown1);
-            tb_Age.KeyUp += new KeyEventHandler(MainWindow_KeyDown2);
-            tb_Salery.KeyUp += new KeyEventHandler(MainWindow_KeyDown3);
+            tb_Salary.Text = employee.Salary.ToString();
+            tb_Name.KeyUp += new KeyEventHandler(tb_Name_KeyDown);
+            tb_Age.KeyUp += new KeyEventHandler(tb_Age_KeyDown);
+            tb_Salary.KeyUp += new KeyEventHandler(tb_Salery_KeyDown);
+            tb_Name.KeyDown += new KeyEventHandler(LetterTextBox_KeyDown);
+            tb_Age.KeyDown += new KeyEventHandler(NumericTextBox_KeyDown);
+            tb_Salary.KeyDown += new KeyEventHandler(NumericTextBox_KeyDown);
         }
 
-        void MainWindow_KeyDown1(object sender, KeyEventArgs e)
+        private void Dep_SelectChanged()
         {
-            if (e.Key == Key.Subtract)
+            company.Departments.Where(x => x.Name == department_Name).FirstOrDefault().Employees.Remove((Employee)employee);
+            company.Departments.Where(x => x.Name == dep.Text).FirstOrDefault().Employees.Add((Employee)employee);
+            department_Name = dep.Text;
+
+        }
+
+        private void NumericTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!Char.IsDigit((char)KeyInterop.VirtualKeyFromKey(e.Key)) && 
+                e.Key != Key.Back || e.Key == Key.Space)
+                e.Handled = true;
+        }
+
+        private void LetterTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Char.IsDigit((char)KeyInterop.VirtualKeyFromKey(e.Key)))
+                e.Handled = true;
+        }
+
+        void tb_Name_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (tb_Name != null)
             {
-                // Do something
+                employee.Name = tb_Name.Text;
+                listView.Items.Refresh();
+            }
+
+        }
+
+        void tb_Age_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (int.TryParse(tb_Age.Text, out var t))
+            {
+                employee.Age = t;
+                listView.Items.Refresh();
             }
         }
 
-        void MainWindow_KeyDown2(object sender, KeyEventArgs e)
+        void tb_Salery_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Subtract)
+            if (int.TryParse(tb_Salary.Text, out var t))
             {
-                // Do something
-            }
-        }
-
-        void MainWindow_KeyDown3(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Subtract)
-            {
-                // Do something
+                employee.Salary = t;
+                listView.Items.Refresh();
             }
         }
     }
