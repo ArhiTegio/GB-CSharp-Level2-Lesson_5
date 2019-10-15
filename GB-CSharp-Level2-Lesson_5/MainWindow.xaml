@@ -10,7 +10,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="5*"/>
             <RowDefinition Height="40*"/>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="150"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -22,7 +22,15 @@
                 HorizontalAlignment="Stretch" 
                 FontSize="14"     
                 VerticalAlignment="Stretch"  
-                Margin="20,10,105,54"
+                Margin="20,10,105,104"
+                Grid.Row="2"/>
+
+        <Button x:Name="btn_dep_clone" 
+                Content="Копировать"
+                HorizontalAlignment="Stretch" 
+                FontSize="14"     
+                VerticalAlignment="Stretch"  
+                Margin="20,51,105,63"
                 Grid.Row="2"/>
 
         <ListView x:Name="listDepartment"
@@ -32,7 +40,7 @@
                   Grid.Column="0"
                   Grid.Row="1" PreviewMouseDoubleClick="ListDepartment_PreviewMouseDoubleClick" SelectionChanged="ListDepartment_SelectionChanged"
                   />
-        
+
         <TextBlock Text="Отдел" 
                    FontSize="16"
                    Margin="5,5,5,5" 
@@ -50,7 +58,7 @@
                    HorizontalAlignment="Center"                   
                    VerticalAlignment="Center"  
                    />
-        
+
         <ListView x:Name="listEmployee"
                   HorizontalAlignment="Stretch"
                   Margin="5,5,5,5"
@@ -58,5 +66,26 @@
                   Grid.Column="1"
                   Grid.Row="1" PreviewMouseDoubleClick="ListEmployee_PreviewMouseDoubleClick"
                   />
+        <Button x:Name="btn_employee_clone" 
+            Content="Копировать"
+            HorizontalAlignment="Stretch" 
+            FontSize="14"     
+            VerticalAlignment="Stretch"  
+            Margin="10,10,115,104"
+            Grid.Row="2" Grid.Column="1"/>
+        <Button x:Name="btn_employee_del" 
+            Content="Удалить"
+            HorizontalAlignment="Stretch" 
+            FontSize="14"     
+            VerticalAlignment="Stretch"  
+            Margin="10,51,115,63"
+            Grid.Row="2" Grid.Column="1"/>
+        <Button x:Name="btn_dep_del" 
+            Content="Удалить"
+            HorizontalAlignment="Stretch" 
+            FontSize="14"     
+            VerticalAlignment="Stretch"  
+            Margin="20,92,105,22"
+            Grid.Row="2"/>
     </Grid>
 </Window>

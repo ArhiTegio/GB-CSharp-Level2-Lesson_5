@@ -21,6 +21,12 @@ namespace GB_CSharp_Level2_Lesson_5
     /// </summary>
     public partial class MainWindow : Window
     {
+        //Урок 5. Знакомство с технологией WPF. 
+        //Создать WPF-приложение для ведения списка сотрудников компании.
+        //1. Создать сущности Employee и Department и заполните списки сущностей начальными данными.
+        //2. Для списка сотрудников и списка департаментов предусмотреть визуализацию (отображение). Это можно сделать, например, с использованием ComboBox или ListView.
+        //3. Предусмотреть возможность редактирования сотрудников и департаментов. Должна быть возможность изменить департамент у сотрудника.Список департаментов для выбора, можно выводить в ComboBox, это все можно выводить на дополнительной форме.
+        //4. Предусмотреть возможность создания новых сотрудников и департаментов.Реализовать данную возможность либо на форме редактирования, либо сделать новую форму.
         
         Company company = new Company();
         ObservableCollection<Employee> employees1;
@@ -50,21 +56,77 @@ namespace GB_CSharp_Level2_Lesson_5
             listDepartment.SelectionChanged += delegate { SelectDepartment(); };
             listEmployee.SelectionChanged += delegate { SelectEmployee(); };
             btn_dep.Click += delegate { OpenWindowDepartment(); };
-
-
+            btn_dep_clone.Click += delegate { CloneDepartment(); };
+            btn_employee_clone.Click += delegate { CloneEmployee(); };
+            btn_employee_del.Click += delegate { DelEmployee(); };
+            btn_dep_del.Click += delegate { DelDepartment(); };
         }
 
-        public void SelectDepartment() => listEmployee.ItemsSource = employees1 = company.Departments.Where(x => x == listDepartment.SelectedItem).FirstOrDefault().Employees;
 
+        /// <summary>
+        /// Событие при выборе отдела
+        /// </summary>
+        public void SelectDepartment()
+        {
+            var e = company?.Departments?.Where(x => x == listDepartment.SelectedItem).FirstOrDefault(); 
+            if(e != null)
+                listEmployee.ItemsSource = employees1 = company?.Departments?.Where(x => x == listDepartment.SelectedItem).FirstOrDefault().Employees;
+        }
+        /// <summary>
+        /// Событие при выборе сотрудника
+        /// </summary>
         public void SelectEmployee()
         {
-            var e = company.Departments.Where(x => x == listDepartment.SelectedItem).FirstOrDefault().Employees.Where(x => x == listEmployee.SelectedItem).FirstOrDefault();
+            var e = company?.Departments?.Where(x => x == listDepartment.SelectedItem).FirstOrDefault().Employees?.Where(x => x == listEmployee.SelectedItem).FirstOrDefault();
             if(e != null)
                 (new WindowEmployee(
                     company.Departments.Where(x => x == listDepartment.SelectedItem).FirstOrDefault().Employees.Where(x => x == listEmployee.SelectedItem).FirstOrDefault(),
                     company.Departments.Where(x => x == listDepartment.SelectedItem).FirstOrDefault(), company, listEmployee)).Show();
         }
 
+        /// <summary>
+        /// Удаление отдела
+        /// </summary>
+        public void DelDepartment()
+        {
+            var dep = company?.Departments?.Where(x => x == listDepartment.SelectedItem).FirstOrDefault();
+            if (dep != null && company?.Departments?.Count > 1)
+                company?.Departments?.Remove(dep);
+        }
+
+        /// <summary>
+        /// Удаление сотрудника
+        /// </summary>
+        public void DelEmployee()
+        {
+            var empl = company?.Departments?.Where(x => x == listDepartment.SelectedItem).FirstOrDefault().Employees.Where(x => x == listEmployee.SelectedItem).FirstOrDefault();
+            if (empl != null && company?.Departments?.Where(x => x == listDepartment.SelectedItem).FirstOrDefault().Employees.Count > 1)
+                company?.Departments?.Where(x => x == listDepartment.SelectedItem).FirstOrDefault().Employees.Remove(empl);
+        }
+
+        /// <summary>
+        /// Копирование отдела
+        /// </summary>
+        public void CloneDepartment()
+        {
+            var dep = company?.Departments?.Where(x => x == listDepartment.SelectedItem).FirstOrDefault();
+            if (dep != null)
+                company?.Departments?.Add(dep);
+        }
+
+        /// <summary>
+        /// Копирование сотрудника
+        /// </summary>
+        public void CloneEmployee()
+        {
+            var empl = company?.Departments?.Where(x => x == listDepartment.SelectedItem).FirstOrDefault().Employees.Where(x => x == listEmployee.SelectedItem).FirstOrDefault();
+            if (empl != null)
+                company?.Departments?.Where(x => x == listDepartment.SelectedItem).FirstOrDefault().Employees.Add(empl);
+        }
+        
+        /// <summary>
+        /// Открытие окна редактирования отдела
+        /// </summary>
         public void OpenWindowDepartment() => (new WindowDepartment(company.Departments.Where(x => x == listDepartment.SelectedItem).FirstOrDefault(), company, listDepartment)).Show();
 
         private void ListDepartment_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)

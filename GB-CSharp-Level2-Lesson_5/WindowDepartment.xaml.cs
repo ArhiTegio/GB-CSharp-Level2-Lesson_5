@@ -25,6 +25,7 @@ namespace GB_CSharp_Level2_Lesson_5
 
         public WindowDepartment(Department department, Company company, ListView listView)
         {
+            
             this.company = company;
             this.department = department;
             InitializeComponent();
@@ -42,8 +43,15 @@ namespace GB_CSharp_Level2_Lesson_5
                 listView.Items.Refresh();
             };
             dep_Profit.KeyDown += new KeyEventHandler(NumericTextBox_KeyDown);
+            this.Topmost = true;
+            this.Activate();
         }
 
+        /// <summary>
+        /// Пропускать символы кроме чисел
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NumericTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (!Char.IsDigit((char)KeyInterop.VirtualKeyFromKey(e.Key)) &&

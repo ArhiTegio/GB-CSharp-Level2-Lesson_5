@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GB_CSharp_Level2_Lesson_5"
         mc:Ignorable="d"
-        Title="WindowDepartment" Height="123" Width="406">
+        Title="Редактор отдела" Height="123" Width="406">
+        
     <Grid>
         <Label Content="Название отдела" FontSize="14" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="28" Width="123"/>
         <TextBox x:Name="dep_Name" HorizontalAlignment="Left" VerticalContentAlignment="Center" FontSize="14" Height="28" Margin="138,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="244"/>

@@ -45,8 +45,13 @@ namespace GB_CSharp_Level2_Lesson_5
             tb_Name.KeyDown += new KeyEventHandler(LetterTextBox_KeyDown);
             tb_Age.KeyDown += new KeyEventHandler(NumericTextBox_KeyDown);
             tb_Salary.KeyDown += new KeyEventHandler(NumericTextBox_KeyDown);
+            this.Topmost = true;
+            this.Activate();
         }
 
+        /// <summary>
+        /// Изменить отдел дял сотркудника
+        /// </summary>
         private void Dep_SelectChanged()
         {
             company.Departments.Where(x => x.Name == department_Name).FirstOrDefault().Employees.Remove((Employee)employee);
@@ -55,6 +60,11 @@ namespace GB_CSharp_Level2_Lesson_5
 
         }
 
+        /// <summary>
+        /// Пропускать символы кроме чисел
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NumericTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (!Char.IsDigit((char)KeyInterop.VirtualKeyFromKey(e.Key)) && 
@@ -62,12 +72,22 @@ namespace GB_CSharp_Level2_Lesson_5
                 e.Handled = true;
         }
 
+        /// <summary>
+        /// Пропускать символы кроме букв
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LetterTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (Char.IsDigit((char)KeyInterop.VirtualKeyFromKey(e.Key)))
                 e.Handled = true;
         }
 
+        /// <summary>
+        /// Событие при изменении имени
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void tb_Name_KeyDown(object sender, KeyEventArgs e)
         {
             if (tb_Name != null)
@@ -78,6 +98,11 @@ namespace GB_CSharp_Level2_Lesson_5
 
         }
 
+        /// <summary>
+        /// Событие при изменении возроста
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void tb_Age_KeyDown(object sender, KeyEventArgs e)
         {
             if (int.TryParse(tb_Age.Text, out var t))
@@ -87,6 +112,11 @@ namespace GB_CSharp_Level2_Lesson_5
             }
         }
 
+        /// <summary>
+        /// Событие при изменении зарплаты
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void tb_Salery_KeyDown(object sender, KeyEventArgs e)
         {
             if (int.TryParse(tb_Salary.Text, out var t))
